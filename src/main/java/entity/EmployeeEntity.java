@@ -5,20 +5,31 @@ import jakarta.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "employee", schema = "p1v3", catalog = "")
+@Table(name = "employee", schema = "p1v3")
 public class EmployeeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "empId")
+    @Column(name = "empId", nullable = false)
     private int empId;
     @Basic
-    @Column(name = "empName")
+    @Column(name = "empName", nullable = true, length = 20)
     private String empName;
     @Basic
-    @Column(name = "empEmail")
+    @Column(name = "empEmail", nullable = true, length = 20)
     private String empEmail;
-    @OneToMany(mappedBy = "employeeByEmpId")
+
+    @Basic
+    @Column(name = "password", nullable = false, length = 255)
+    private String password;
+
+    @OneToMany(mappedBy = "empId")
     private Collection<ClaimEntity> claimsByEmpId;
+    @Basic
+    @Column(name = "empl_Type", nullable = false)
+    private int emplType;
+
+    public EmployeeEntity() {
+    }
 
     public int getEmpId() {
         return empId;
@@ -44,6 +55,14 @@ public class EmployeeEntity {
         this.empEmail = empEmail;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,7 +74,8 @@ public class EmployeeEntity {
         if (empName != null ? !empName.equals(that.empName) : that.empName != null) return false;
         if (empEmail != null ? !empEmail.equals(that.empEmail) : that.empEmail != null) return false;
 
-        return true;
+        return password != null ? password.equals(that.password) : that.password == null;
+
     }
 
     @Override
@@ -63,6 +83,8 @@ public class EmployeeEntity {
         int result = empId;
         result = 31 * result + (empName != null ? empName.hashCode() : 0);
         result = 31 * result + (empEmail != null ? empEmail.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+
         return result;
     }
 
@@ -72,5 +94,13 @@ public class EmployeeEntity {
 
     public void setClaimsByEmpId(Collection<ClaimEntity> claimsByEmpId) {
         this.claimsByEmpId = claimsByEmpId;
+    }
+
+    public int getEmplType() {
+        return emplType;
+    }
+
+    public void setEmplType(int emplType) {
+        this.emplType = emplType;
     }
 }

@@ -2,36 +2,36 @@ package entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
 import java.util.Arrays;
+import java.util.Objects;
 
 @Entity
-@Table(name = "claim", schema = "p1v3", catalog = "")
+@Table(name = "claim", schema = "p1v3")
 public class ClaimEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "claimId")
+    @Column(name = "claimId", nullable = false)
     private int claimId;
     @Basic
-    @Column(name = "claimDate")
-    private Date claimDate;
+    @Column(name = "claimDate", nullable = true, length = 35)
+    private String claimDate;
     @Basic
-    @Column(name = "claimAmount")
+    @Column(name = "claimAmount", nullable = true)
     private Integer claimAmount;
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", nullable = true, length = 250)
     private String description;
     @Basic
-    @Column(name = "caption")
+    @Column(name = "caption", nullable = true, length = 50)
     private String caption;
     @Basic
-    @Column(name = "img")
+    @Column(name = "img", nullable = true)
     private byte[] img;
     @Basic
-    @Column(name = "approved")
-    private Byte approved;
+    @Column(name = "approved", nullable = true)
+    private boolean approved;
     @Basic
-    @Column(name = "empId")
+    @Column(name = "empId", nullable = true)
     private Integer empId;
 
     public int getClaimId() {
@@ -42,11 +42,11 @@ public class ClaimEntity {
         this.claimId = claimId;
     }
 
-    public Date getClaimDate() {
+    public String getClaimDate() {
         return claimDate;
     }
 
-    public void setClaimDate(Date claimDate) {
+    public void setClaimDate(String claimDate) {
         this.claimDate = claimDate;
     }
 
@@ -82,11 +82,15 @@ public class ClaimEntity {
         this.img = img;
     }
 
-    public Byte getApproved() {
+    public boolean getApproved() {
         return approved;
     }
 
     public void setApproved(Byte approved) {
+        this.approved = false;
+    }
+
+    public void setApproved(boolean approved) {
         this.approved = approved;
     }
 
@@ -111,10 +115,8 @@ public class ClaimEntity {
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (caption != null ? !caption.equals(that.caption) : that.caption != null) return false;
         if (!Arrays.equals(img, that.img)) return false;
-        if (approved != null ? !approved.equals(that.approved) : that.approved != null) return false;
-        if (empId != null ? !empId.equals(that.empId) : that.empId != null) return false;
-
-        return true;
+        if (approved != that.approved) return false;
+        return Objects.equals(empId, that.empId);
     }
 
     @Override
@@ -125,7 +127,7 @@ public class ClaimEntity {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (caption != null ? caption.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(img);
-        result = 31 * result + (approved != null ? approved.hashCode() : 0);
+        result = 31 * result + (approved ? 1 : 0);
         result = 31 * result + (empId != null ? empId.hashCode() : 0);
         return result;
     }

@@ -1,5 +1,7 @@
-package entity;
+package com.davidodhiambo.service;
 
+import entity.EmployeeEntity;
+import entity.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

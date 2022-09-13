@@ -1,4 +1,4 @@
-
+<%@include file="header1.html"%>
   <!--======= SUB BANNER =========-->
   <section class="sub-banner bg-parallax" style="background:url(images/bg/about-bg-1.jpg) no-repeat">
     <div class="container">
@@ -33,7 +33,7 @@
             <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been Submitted</div>
             
             <!-- FORM -->
-            <form action="registerClaim" role="form" id="contact_form" class="contact-form" method="post" onSubmit="return true">
+            <form action="registerClaim" role="form" id="contact_form" class="contact-form" method="POST" onSubmit="return true">
               <ul class="row">
                 <li class="col-sm-4">
                   <label>
@@ -65,3 +65,4 @@
       </div>
     </section>
 </div>
+<%@include file="footer1.html"%>

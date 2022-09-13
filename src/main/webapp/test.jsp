@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fodhi
-  Date: 9/10/2022
-  Time: 2:52 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<!--include file = "header.html" -->
+<%@include file="header1.html"%>
+<!--dummy data-->
+<%
+String name="Rajesh";
+String address="Bangalore";
+String phone="1234567890";
+%>
+
+<%@include file="footer1.html"%>
