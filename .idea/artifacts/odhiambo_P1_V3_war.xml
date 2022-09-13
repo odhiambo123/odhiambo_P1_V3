@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="odhiambo_P1_V3:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>odhiambo_P1_V3</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="odhiambo_P1_V3-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="odhiambo_P1_V3:war exploded" />
+    </root>
+  </artifact>
+</component>
